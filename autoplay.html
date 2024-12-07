@@ -23,12 +23,45 @@
             max-width: 100%;
             height: auto;
         }
+        button {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <video autoplay controls>
+    <video id="testVideo" autoplay controls>
         <source src="media/video.mp4" type="video/mp4">
         Your browser does not support video playback.
     </video>
+    <button id="unmuteButton">Включить звук</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('testVideo');
+            const unmuteButton = document.getElementById('unmuteButton');
+
+            // Попробуем запустить видео с отключенным звуком
+            video.play().then(() => {
+                console.log('Видео воспроизводится без звука.');
+            }).catch((error) => {
+                console.error('Ошибка воспроизведения:', error);
+            });
+
+            // Включение звука после начала воспроизведения
+            unmuteButton.addEventListener('click', () => {
+                video.muted = false; // Отключаем "mute"
+                console.log('Звук включен.');
+                unmuteButton.style.display = 'none'; // Убираем кнопку
+            });
+        });
+    </script>
 </body>
 </html>
