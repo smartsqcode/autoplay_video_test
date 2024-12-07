@@ -46,20 +46,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const video = document.getElementById('testVideo');
-            const unmuteButton = document.getElementById('unmuteButton');
 
-            // Попробуем запустить видео с отключенным звуком
+            // Попытка воспроизвести видео
             video.play().then(() => {
-                console.log('Видео воспроизводится без звука.');
+                console.log('Видео воспроизводится.');
+                
+                // Включаем звук через скрипт
+                video.muted = false;
+                console.log('Звук включен автоматически.');
             }).catch((error) => {
                 console.error('Ошибка воспроизведения:', error);
-            });
-
-            // Включение звука после начала воспроизведения
-            unmuteButton.addEventListener('click', () => {
-                video.muted = false; // Отключаем "mute"
-                console.log('Звук включен.');
-                unmuteButton.style.display = 'none'; // Убираем кнопку
             });
         });
     </script>
